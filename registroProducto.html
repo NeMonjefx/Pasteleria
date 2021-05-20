@@ -74,6 +74,20 @@
         .on("cut copy paste",function(e){
 	    e.preventDefault();
         });   
+        $('#precioCompra').keypress(function(e) {
+	        if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+            return false;
+        })
+        .on("cut copy paste",function(e){
+	    e.preventDefault();
+        });   
+        $('#precioVenta').keypress(function(e) {
+	        if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+            return false;
+        })
+        .on("cut copy paste",function(e){
+	    e.preventDefault();
+        });   
 
         $('input[type=text]').keypress(function (e) {
                 var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
@@ -138,11 +152,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="precioCosto">Precio Costo</label>
-                            <input type="number" name="precioCosto" class="form-control" id="precioCosto" placeholder="Precio costo">
+                            <input type="text" name="precioCosto" class="form-control" id="precioCosto" placeholder="Precio costo">
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="precioVenta">Precio Venta</label>
-                            <input type="number" name="precioVenta" class="form-control" id="precioVenta" placeholder="Precio Venta">
+                            <input type="text" name="precioVenta" class="form-control" id="precioVenta" placeholder="Precio Venta">
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
                             <label for="marca">Marca</label>
