@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <script src="https://kit.fontawesome.com/cf62b696b1.js" crossorigin="anonymous"></script>
+
+    <script>
+        
+        $(document).ready(function(){
+            $("#btnRegistro").click(function(){
+                var nombre = $("#nombre").val();
+                var precioCosto = $("#PrecioCosto").val();
+
+                
+
+                if(nombre == ""){
+                    alert("Debe ingresar el 'Nombre' del producto");
+                    $("#nombre").focus();
+                    return false;
+                }
+                if($("#codBarras").val() == ""){
+                    alert("Debe ingresar el 'Codigo de Barras' del producto");
+                    $("#codBarras").focus();
+                    return false;
+                }
+                if($("#precioCosto").val() == ""){
+                    alert("Debe ingresar el 'Precio Costo' del producto");
+                    $("#precioCosto").focus();
+                    return false;
+                }
+                if($("#precioVenta").val() == ""){
+                    alert("Debe ingresar el 'Precio Venta' del producto");
+                    $("#precioVenta").focus();
+                    return false;
+                }
+                if($("#marca").val() == ""){
+                    alert("Debe ingresar la 'Marca' del producto");
+                    $("#marca").focus();
+                    return false;
+                }
+
+                
+                alert(
+                    "Producto ingresado:" +
+                        "\nNombre: " + $("#nombre").val() +
+                        "\nCodigo de Barrasa: " + $("#codBarras").val() +
+                        "\nPrecio Costo: " + $("#precioCosto").val() +
+                        "\nPrecio Venta: " + $("#precioVenta").val() +
+                        "\nMarca: " + $("#marca").val()  
+                );
+            });
+        $('#codBarras').keypress(function(e) {
+	        if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+            return false;
+        })
+        .on("cut copy paste",function(e){
+	    e.preventDefault();
+        });   
+
+        $('input[type=text]').keypress(function (e) {
+                var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
+                return !((tecla > 47 && tecla < 58) || tecla == 46);
+            });
+        });
+        var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+
+
+    </script>
+    <title>Pastelería - Dulce Frenesí</title>
+</head>
+<body class="body-registro">
+    
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">
+            <img src="img/pastel.svg" width="40" height="40" class="d-inline-block align-top" alt="">
+        </a>
+        <a class="navbar-brand" href="index.html">
+            <img src="img/logo.png" widht="30" height="30" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="registroProducto.html"><i class="far fa-file"></i> Registrar Producto</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> Usuario
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="registro.html">Registrarse</a>
+                    <a class="dropdown-item" href="login.html">Iniciar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- FORMULARIO REGISTRO DE ITEM -->
+    <div class="container container-registro align-items-center">
+        <div class="row">
+            <div class="col-12">
+                <form class="justify-content-center" id="formRegistro">
+                    <h1>Registrar Producto</h1>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" name ="nombre" class="form-control" id="nombre" placeholder="Nombre">
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="codBarras">Codigo de Barras</label>
+                            <input type="tel" class="form-control" id="codBarras" placeholder="Codigo de Barras">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="precioCosto">Precio Costo</label>
+                            <input type="number" name="precioCosto" class="form-control" id="precioCosto" placeholder="Precio costo">
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="precioVenta">Precio Venta</label>
+                            <input type="number" name="precioVenta" class="form-control" id="precioVenta" placeholder="Precio Venta">
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12">
+                            <label for="marca">Marca</label>
+                            <input type="email" name="marca" class="form-control" id="marca" aria-describedby="emailHelp" placeholder="Marca">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Descripcion</label>
+                        <textarea name="" id="descripcion" cols="30" rows="10" class="col-12"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="btnRegistro">Registrar</button>
+                    <button type="reset" class="btn btn-secondary">Limpiar</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- FORMULARIO DE REGISTRO -->
+
+
+
+
+</body>
+</html>

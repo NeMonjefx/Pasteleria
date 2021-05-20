@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- JQUERY -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- ICONS -->
+    <script src="https://kit.fontawesome.com/cf62b696b1.js" crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <script>
+        
+        $(document).ready(function(){
+            $("#btnRegistro").click(function(){
+                var nombre = $("#nombre").val();
+                var segundo_nombre = $("#nombre2").val();
+                var apellido_Paterno = $("apellido").val();
+                var apellido_Materno = $("apellido2").val();
+                var email = $("#email").val();
+                var password = $("#password").val();
+                var region = $("#region option:selected");
+                var educacion = $("#educacion option:selected");
+                var terminos = $("#terminos[type = 'checkbox']:checked")
+                var telefono = $("#telefono")
+                var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+
+                if(nombre == ""){
+                    alert("Debe ingresar su 'Nombre'");
+                    $("#nombre").focus();
+                    return false;
+                }
+
+                if($("#apellido").val() == ""){
+                    alert("Debe ingresar su 'Apellido paterno'");
+                    $("#apellido").focus();
+                    return false;
+                }
+                if($("#apellido2").val() == ""){
+                    alert("Debe ingresar su 'Apellido materno'");
+                    $("#apellido2").focus();
+                    return false;
+                }
+                if($("#email").val() == ""){
+                    alert("Debe ingresar su 'Correo Eléctronico'");
+                    $("#email").focus();
+                    return false;
+                }
+                let emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/
+				
+				if(!emailRegex.test($('#email').val()))
+				{
+					alert("El formato del correo no es valido");
+					$('#email').focus();
+					return false;
+				}	
+                if($("#password").val() == ""){
+                    alert("Debe ingresar su 'Contraseña'");
+                    $("#password").focus();
+                    return false;
+                }
+                if($("#telefono").val() == ""){
+                    alert("Debe ingresar su 'Telefono'");
+                    $("#telefono").focus();
+                    return false;
+                }
+                if(telefono.length >= 12 ){
+                    alert("Cantidad de numeros exede o es menor al tamaño normal");
+                    return false;
+                }
+                if($("#fechaNac").val() == ""){
+                    alert("Debe ingresar su 'Fecha de nacimiento'");
+                    $("#telefono").focus();
+                    return false;
+                }
+                if($("#region").val() == ""){
+                    alert("Debe seleccionar una region");
+                    $("#region").focus();
+                    return false;
+                }
+                if($("#educacion").val() == ""){
+                    alert("Debe seleccionar su nivel educacional");
+                    $("#educacion").focus();
+                    return false;
+                }
+                if(terminos.length == 0){
+                    alert("Debe aceptar los terminos y condiciones para registrarse");
+                    return false;
+                }
+
+                
+                alert(
+                    "Datos ingresados:" +
+                        "\nNombre: " + $("#nombre").val() +
+                        "\nSegundo nombre: " + $("#nombre2").val() +
+                        "\nApellido Paterno: " + $("#apellido").val() +
+                        "\nApellido Materno: " + $("#apellido2").val() +
+                        "\nEmail: " + $("#email").val() +
+                        "\nTeléfono: " + $("#telefono").val() +
+                        "\nRegion: " + $("#region").val() +
+                        "\nNivel educacional: " + $("#educacion").val()
+                );
+            });
+        $('#telefono').keypress(function(e) {
+	        if(isNaN(this.value + String.fromCharCode(e.charCode))) 
+            return false;
+        })
+        .on("cut copy paste",function(e){
+	    e.preventDefault();
+        });   
+
+        $('input[type=text]').keypress(function (e) {
+                var tecla = document.all ? tecla = e.keyCode : tecla = e.which;
+                return !((tecla > 47 && tecla < 58) || tecla == 46);
+            });
+        });
+        
+
+
+    </script>
+
+
+    
+    <title>Pastelería - Dulce Frenesí</title>
+</head>
+<body class="body-registro">
+    
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">
+            <img src="img/pastel.svg" width="40" height="40" class="d-inline-block align-top" alt="">
+        </a>
+        <a class="navbar-brand" href="index.html">
+            <img src="img/logo.png" widht="30" height="30" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="registroProducto.html"><i class="far fa-file"></i> Registrar Producto</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> Usuario
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="registro.html">Registrarse</a>
+                    <a class="dropdown-item" href="login.html">Iniciar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- NAVBAR -->
+    <!-- FORMULARIO DE REGISTRO -->
+    <div class="container container-registro align-items-center">
+        <div class="row">
+            <div class="col-12">
+                <form class="justify-content-center" id="formRegistro">
+                    <h1>Formulario de Registro</h1>
+                    <small id="emailHelp" class="form-tex text-muted">Los campos destacados (<span class="asterisco">*</span>) son de caracter <span class="obligatorio">Obligatorio.</span></small>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="nombre">Nombre <span class="asterisco">*</span></label>
+                            <input type="text" name ="nombre" class="form-control" id="nombre" placeholder="Nombre">
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="nombre2">Segundo Nombre</label>
+                            <input type="text" class="form-control" id="nombre2" placeholder="Segundo Nombre">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="apellido">Apellido Paterno <span class="asterisco">*</span></label>
+                            <input type="text" name="apellido" class="form-control" id="apellido" placeholder="Apellido Paterno">
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="apellido2">Apellido Materno <span class="asterisco">*</span></label>
+                            <input type="text" name="apellido2" class="form-control" id="apellido2" placeholder="Apellido Materno">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Eléctronico <span class="asterisco">*</span></label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Correo Eléctronico">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Contraseña <span class="asterisco">*</span></label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="telefono">Teléfono <span class="asterisco">*</span></label>
+                            <input type="tel" name="telefono" maxlenght="11" class="form-control" id="telefono" placeholder="Número de Teléfono">
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="apellido2">Fecha de Nacimiento <span class="asterisco">*</span></label>
+                            <input type="date" name="fechaNac" class="form-control" id="fechaNac">
+                        </div>
+                    </div>
+                    <select class="custom-select mb-2" id="region">
+                        <option value="" selected>Región <span class="asterisco">*</span></option>
+                        <option value="Región de Arica y Parinacota">Región de Arica y Parinacota.</option>
+                        <option value="Región de Tarapacá">Región de Tarapacá.</option>
+                        <option value="Región de Antofagasta">                                
+                            Región de Antofagasta.</option>
+                        <option value="Región de Atacama">Región de Atacama.</option>
+                        <option value="Región de Coquimbo">Región de Coquimbo.</option>
+                        <option value="Región de Valparaíso">Región de Valparaíso.</option>
+                        <option value="Región Metropolitana de Santiago">Región Metropolitana de Santiago.</option>
+                        <option value="Región del Libertador General Bernardo O’Higgins">Región del Libertador General Bernardo O’Higgins.</option>
+                        <option value="Región del Maule">Región del Maule.</option>
+                        <option value="Región del Ñuble">Región del Ñuble.</option>
+                        <option value="Región del Biobío">Región del Biobío.</option>
+                        <option value="Región de La Araucanía">Región de La Araucanía.</option>
+                        <option value="Región de Los Ríos">Región de Los Ríos.</option>
+                        <option value="Región de Los Lagos">Región de Los Lagos.</option>
+                        <option value="Región de Aysén del General Carlos Ibáñez del Campo">Región de Aysén del General Carlos Ibáñez del Campo.</option>
+                        <option value="Región de Magallanes y la Antártica Chilena">Región de Magallanes y la Antártica Chilena.</option>
+                    </select>
+                    <select class="custom-select mb-2" id="educacion">
+                        <option value="" selected>Nivel Educacional <span class="asterisco">*</span></option>
+                        <option value="Educación Básica">Educación Básica</option>
+                        <option value="Educación Media">Educación Media</option>
+                        <option value="Profesional">Profesional</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Magister">Magister</option>
+                        <option value="otra">otra</option>
+                    </select>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="terminos">
+                        <label class="form-check-label" for="exampleCheck1">Acepto los <span class="terminos">Terminos y Condiciones</span></label>
+                    </div>
+                        <button type="submit" class="btn btn-dark col-sm-12" id="btnRegistro">Registrarme</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- FORMULARIO DE REGISTRO -->
+
+
+
+
+</body>
+</html>
